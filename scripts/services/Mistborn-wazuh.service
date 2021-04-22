@@ -1,0 +1,26 @@
+[Unit]
+Description=Mistborn Wazuh Service
+Requires=Mistborn-elasticsearch.service
+After=Mistborn-elasticsearch.service
+PartOf=Mistborn-base.service
+
+[Service]
+Restart=always
+RestartSec=15
+User=root
+Group=docker
+PermissionsStartOnly=true
+# Shutdown container (if running) when unit is stopped
+ExecStartPre=/opt/mistborn/scripts/wrappers/mistborn_docker.sh wazuh docker-compose -f /opt/mistborn/extra/wazuh.yml down
+# Start container when unit is started
+ExecStart=/opt/mistborn/scripts/wrappers/mistborn_docker.sh wazuh docker-compose -f /opt/mistborn/extra/wazuh.yml up --build
+# Agent install
+ExecStartPost=/opt/mistborn/scripts/wrappers/mistborn_docker.sh wazuh /opt/mistborn/scripts/services/wazuh/agent.sh
+ExecStartPost=-/opt/mistborn/scripts/wrappers/mistborn_docker.sh wazuh /opt/mistborn/scripts/services/wazuh/agent_start.sh
+# Stop container when unit is stopped
+ExecStop=-/opt/mistborn/scripts/wrappers/mistborn_docker.sh wazuh /opt/mistborn/scripts/services/wazuh/agent_stop.sh
+ExecStop=/opt/mistborn/scripts/wrappers/mistborn_docker.sh wazuh docker-compose -f /opt/mistborn/extra/wazuh.yml down
+
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,30 @@
+version: '3.7'
+
+services:
+
+  elasticsearch:
+    image: amazon/opendistro-for-elasticsearch:1.12.0
+    hostname: elasticsearch
+    restart: unless-stopped
+    ports:
+      - "${MISTBORN_BIND_IP}:9200:9200"
+    environment:
+      - discovery.type=single-node
+      - cluster.name=mistborn-cluster
+      - network.host=0.0.0.0
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - bootstrap.memory_lock=true
+    volumes:
+      - ../../mistborn_volumes/extra/elasticsearch/init/internal_users.yml:/usr/share/elasticsearch/plugins/opendistro_security/securityconfig/internal_users.yml
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+
+networks:
+  default:
+    external:
+      name: mistborn_default

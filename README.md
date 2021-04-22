@@ -39,6 +39,7 @@ These tools are not vital to Mistborn itself but are integrated to enhance secur
 - [Pi-hole](https://pi-hole.net): A DNS server for network-wide ad blocking, etc
 - [DNScrypt](https://www.dnscrypt.org): prevents DNS spoofing via cryptographic signatures to verify that responses originate from the chosen DNS resolver and haven't been tampered
 - [Traefik](https://docs.traefik.io): A modern, efficient reverse-proxy
+- [Wazuh](https://wazuh.com/): Wazuh is a free, open source and enterprise-ready security monitoring solution for threat detection, integrity monitoring, incident response and compliance.
 
 Within Mistborn is a panel to enable and manage these free extra services (off by default), locally hosted in Docker containers:
 - [Home Assistant](https://www.home-assistant.io): Open source home automation that puts local control and privacy first
@@ -82,6 +83,7 @@ Recommended System Specifications:
 | Default                | Bare bones + Cockpit                                                          | 2 GB+ | 15 GB     |
 | Low-resource services  | Default + Bitwarden, Tor, Syncthing                                           | 4 GB  | 20 GB     |
 | High-resource services | Default + Jitsi, Nextcloud, Jellyfin, Rocket.Chat, Home Assistant, OnlyOffice | 6 GB+ | 25 GB+    |
+| SIEM                   | Default + Wazuh + Extras                                                      | 16 GB+ | 100 GB+   |
 
 Starting from base installation
 ```
@@ -108,6 +110,18 @@ Mistborn protects your data in a variety of ways:
 - Pi-hole running on Mistborn blocks outgoing internet requests to configurable blocked domains (ads, malicious/phishing domains, etc.) 
 
 See the [Mistborn Network Security](https://gitlab.com/cyber5k/mistborn/-/wikis/Mistborn-Network-Security) wiki page to see more network diagrams and the network scan results for Mistborn.
+
+# Security Information & Event Management (SIEM)
+
+![Mistborn Security Center](https://gitlab.com/cyber5k/public/-/raw/master/graphics/home.mistborn_soc.png)
+
+The Mistborn Security Operations Center provides SIEM services with Wazuh. The Wazuh Manager requires an Open Distro for Elasticsearch backend. When the Mistborn host has >8 GB RAM the provided Elasticsearch backend can be used. Just click "Start Wazuh" on the `Security Center` page and enjoy your Enterprise-grade SIEM. Wazuh agents can be installed on just about any OS and all Wazuh agent traffic is communicated over the Wireguard connections. Instructions for adding endpoint agents can be found within Wazuh itself.
+
+![Mistborn Security Center: Wazuh Modules](https://gitlab.com/cyber5k/public/-/raw/master/graphics/wazuh_modules.png)
+
+The Wazuh Kibana plugin leverages the power of Elasticsearch:
+
+![Mistborn Security Center: Wazuh Dashboard](https://gitlab.com/cyber5k/public/-/raw/master/graphics/wazuh_se_dashboard.png)
 
 # Coppercloud
 Pihole provides a way to block outgoing DNS requests for given lists of blocked domains. Coppercloud provides a way to block outgoing network calls of all types to given lists of IP addresses (IPv4 only for now). This is especially useful for blocking outgoing telemetry (data and state sharing) to owners of software running on all of your devices.
@@ -290,6 +304,7 @@ Mistborn uses the following domains (that can be reached by all Wireguard client
 | Jitsi | jitsi.mistborn | Off |
 | Guacamole | guac.mistborn | Off |
 | RaspAP | raspap.mistborn | Off |
+| Wazuh | wazuh.mistborn | Off |
 
 # Default Credentials
 These are the default credentials to use in the services you choose to use:
@@ -298,6 +313,7 @@ These are the default credentials to use in the services you choose to use:
 | ------- | -------- | -------- |
 | Pihole |  | {{default mistborn password}} |
 | Cockpit | cockpit | {{default mistborn password}} |
+| Wazuh | mistborn | {{default mistborn password}} |
 | Nextcloud | mistborn | {{default mistborn password}} |
 | Guacamole | mistborn | {{default mistborn password }} |
 | RaspAP | mistborn | {{default mistborn password}} |
@@ -464,6 +480,8 @@ sudo journalctl -xfu Mistborn-guacamole
 sudo journalctl -xfu Mistborn-rocketchat
 sudo journalctl -xfu Mistborn-onlyoffice
 sudo journalctl -xfu Mistborn-tor
+sudo journalctl -xfu Mistborn-raspap
+sudo journalctl -xfu Mistborn-wazuh
 ```
 
 ## Troubleshooting Docker
@@ -529,8 +547,6 @@ Many features and refinements are in the works at various stages including:
 - Plugins for Extra Services (enabling third-party development)
 - Plugin repository
 - IPv6 support
-- Integration with RaspAP to enable managing an Access Point for local network connections
-- Internal network scan tool and feedback
 - Anomaly detection in network traffic
 
 # Featured In
