@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # detect if already installed
-if [ $(dpkg -s wazuh-agent &> /dev/null) -eq 0 ]; then
+if dpkg -s wazuh-agent &> /dev/null; then
     echo "Wazuh agent already installed"
     exit 0
 fi
