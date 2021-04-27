@@ -22,4 +22,4 @@ ExecStop=/opt/mistborn/scripts/wrappers/mistborn_docker.sh tor docker-compose -f
 ExecStopPost=-/sbin/iptables -D DOCKER-USER -i DIFACE -p tcp --dport 9150 -j MISTBORN_LOG_DROP
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=Mistborn-base.service

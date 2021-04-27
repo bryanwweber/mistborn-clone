@@ -20,4 +20,4 @@ ExecStop=/opt/mistborn/scripts/wrappers/mistborn_docker.sh homeassistant docker-
 # Post stop
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=Mistborn-base.service

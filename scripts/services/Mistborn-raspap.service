@@ -22,4 +22,4 @@ ExecStopPost=-/sbin/iptables -D DOCKER-USER -i DIFACE -p tcp --dport 8095 -j MIS
 # Post stop
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=Mistborn-base.service
