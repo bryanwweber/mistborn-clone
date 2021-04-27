@@ -24,4 +24,4 @@ ExecStopPost=-/sbin/iptables -D DOCKER-USER -i DIFACE -p udp --dport 21027 -j MI
 ExecStopPost=-/sbin/iptables -D DOCKER-USER -i DIFACE -p tcp --dport 22000 -j MISTBORN_LOG_DROP
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=Mistborn-base.service

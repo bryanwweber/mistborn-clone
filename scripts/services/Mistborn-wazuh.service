@@ -23,4 +23,4 @@ ExecStop=/opt/mistborn/scripts/wrappers/mistborn_docker.sh wazuh docker-compose 
 
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=Mistborn-base.service

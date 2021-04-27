@@ -24,4 +24,4 @@ ExecStop=/opt/mistborn/scripts/wrappers/mistborn_docker.sh jitsi docker-compose 
 ExecStopPost=-/opt/mistborn/scripts/wrappers/mistborn_docker.sh jitsi /opt/mistborn/scripts/services/jitsi/iptables_down.sh
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=Mistborn-base.service

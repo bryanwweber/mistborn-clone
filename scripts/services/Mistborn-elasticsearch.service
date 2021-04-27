@@ -19,4 +19,4 @@ ExecStart=/opt/mistborn/scripts/wrappers/mistborn_docker.sh elasticsearch docker
 ExecStop=/opt/mistborn/scripts/wrappers/mistborn_docker.sh elasticsearch docker-compose -f /opt/mistborn/extra/elasticsearch.yml down
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=Mistborn-base.service

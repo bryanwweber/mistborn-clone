@@ -6,7 +6,7 @@ figlet "Mistborn: Configuring Firewall"
 
 echo "stop iptables wrappers"
 if [ "$DISTRO" == "ubuntu" ]; then
-    # Disable UFW
+    echo "Disabling UFW"
     sudo systemctl stop ufw || true
     sudo systemctl disable ufw || true
 fi
