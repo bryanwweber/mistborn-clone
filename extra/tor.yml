@@ -8,7 +8,7 @@ services:
     image: mistborn_production_tor
     container_name: mistborn_production_tor
     ports:
-      - 9150:9150/tcp
+      - "${MISTBORN_BIND_IP}:9150:9150/tcp"
 
 networks:
   default:

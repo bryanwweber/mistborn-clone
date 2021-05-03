@@ -69,6 +69,10 @@ pushd .
 cd /opt/mistborn
 git submodule update --init --recursive
 
+# Check updates
+echo "Checking updates"
+source ./scripts/subinstallers/check_updates.sh
+
 # MISTBORN_DEFAULT_PASSWORD
 source ./scripts/subinstallers/passwd.sh
 
@@ -90,8 +94,7 @@ else
     echo "SSH key exists for $USER"
 fi
 
-# initial load update package list
-sudo apt-get update
+# initial load update package list during check_updates.sh
 
 # install figlet
 sudo -E apt-get install -y figlet

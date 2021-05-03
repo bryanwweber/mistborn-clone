@@ -15,8 +15,8 @@ services:
       - ../../mistborn_volumes/extra/syncthing/data2:/data2
     ports:
       #- 8384:8384
-      - 22000:22000/tcp # listening port
-      - 21027:21027/udp # protocol discovery
+      - "${MISTBORN_BIND_IP}:22000:22000/tcp" # listening port
+      - "${MISTBORN_BIND_IP}:21027:21027/udp" # protocol discovery
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.syncthing-http.rule=Host(`syncthing.mistborn`)"
