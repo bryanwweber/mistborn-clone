@@ -7,6 +7,7 @@ After=netfilter-persistent.service
 
 [Service]
 Restart=always
+RestartSec=15
 User=root
 Group=docker
 PermissionsStartOnly=true

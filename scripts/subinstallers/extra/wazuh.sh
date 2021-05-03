@@ -23,14 +23,14 @@ import secrets
 import random
 import string
 
-random_pass = ([secrets.choice("@$!*?-_"),
+random_pass = ([secrets.choice("@$!*?-"),
                            secrets.choice(string.digits),
                            secrets.choice(string.ascii_lowercase),
                            secrets.choice(string.ascii_uppercase),
                            ]
                           + [secrets.choice(string.ascii_lowercase
                                            + string.ascii_uppercase
-                                           + "@$!*?-_"
+                                           + "@$!*?-"
                                            + string.digits) for i in range(12)])
 
 random.shuffle(random_pass)

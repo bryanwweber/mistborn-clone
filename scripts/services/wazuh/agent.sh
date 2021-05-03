@@ -6,10 +6,14 @@ if dpkg -s wazuh-agent &> /dev/null; then
     exit 0
 fi
 
+# install curl
+echo "install curl"
+sudo -E apt-get install -y curl
+
 # prepare repo
 echo "Adding Wazuh Repository"
-curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | apt-key add -
-echo "deb https://packages.wazuh.com/4.x/apt/ stable main" | tee -a /etc/apt/sources.list.d/wazuh.list
+curl -s https://packages.wazuh.com/key/GPG-KEY-WAZUH | sudo -E apt-key add -
+echo "deb https://packages.wazuh.com/4.x/apt/ stable main" | sudo -E tee /etc/apt/sources.list.d/wazuh.list
 
 apt-get update
 
