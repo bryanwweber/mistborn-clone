@@ -13,6 +13,11 @@ Group=docker
 PermissionsStartOnly=true
 # Shutdown container (if running) when unit is stopped
 EnvironmentFile=/opt/mistborn/.env
+
+# stop all containers joined to mistborn_default network
+ExecStartPre=-/usr/bin/bash -c "docker container stop $(docker network inspect mistborn_default | grep Name | tail -n +2 | cut -d':' -f2 | tr -d ',\"') 2>/dev/null"
+
+# bring down the base service
 ExecStartPre=/usr/local/bin/docker-compose -f /opt/mistborn/base.yml down
 
 ExecStartPre=/usr/local/bin/docker-compose -f /opt/mistborn/base.yml build
