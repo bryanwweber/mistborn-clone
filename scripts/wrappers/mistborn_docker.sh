@@ -37,6 +37,12 @@ for SERVICE in "${SERVICES_ARRAY[@]}"; do
     fi
 done
 
+# check that netcat exists
+if ! [ -x "$(command -v nc)" ]; then
+    echo "Installing netcat"
+    sudo apt-get install -y netcat
+fi
+
 # ensure base is up and listening
 echo "Checking that Mistborn-base has finished starting up..."
 

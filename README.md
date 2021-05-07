@@ -39,7 +39,10 @@ These tools are not vital to Mistborn itself but are integrated to enhance secur
 - [Pi-hole](https://pi-hole.net): A DNS server for network-wide ad blocking, etc
 - [DNScrypt](https://www.dnscrypt.org): prevents DNS spoofing via cryptographic signatures to verify that responses originate from the chosen DNS resolver and haven't been tampered
 - [Traefik](https://docs.traefik.io): A modern, efficient reverse-proxy
+
+These tools can be turned on from the Mistborn Security Operations Center:
 - [Wazuh](https://wazuh.com/): Wazuh is a free, open source and enterprise-ready security monitoring solution for threat detection, integrity monitoring, incident response and compliance.
+- [Suricata](https://suricata-ids.org/): Suricata is a free and open source, mature, fast and robust network threat detection engine. The Suricata engine is capable of real time intrusion detection (IDS), inline intrusion prevention (IPS), network security monitoring (NSM) and offline pcap processing. Suricata inspects the network traffic using a powerful and extensive rules and signature language, and has powerful Lua scripting support for detection of complex threats.
 
 Within Mistborn is a panel to enable and manage these free extra services (off by default), locally hosted in Docker containers:
 - [Home Assistant](https://www.home-assistant.io): Open source home automation that puts local control and privacy first
@@ -116,6 +119,8 @@ See the [Mistborn Network Security](https://gitlab.com/cyber5k/mistborn/-/wikis/
 ![Mistborn Security Center](https://gitlab.com/cyber5k/public/-/raw/master/graphics/home.mistborn_soc.png)
 
 The Mistborn Security Operations Center provides SIEM services with Wazuh. The Wazuh Manager requires an Open Distro for Elasticsearch backend. When the Mistborn host has >8 GB RAM the provided Elasticsearch backend can be used. Just click "Start Wazuh" on the `Security Center` page and enjoy your Enterprise-grade SIEM. Wazuh agents can be installed on just about any OS and all Wazuh agent traffic is communicated over the Wireguard connections. Instructions for adding endpoint agents can be found within Wazuh itself.
+
+Mistborn's Wazuh installs and integrates with Suricata running on Mistborn with logs ingested into Wazuh.
 
 ![Mistborn Security Center: Wazuh Modules](https://gitlab.com/cyber5k/public/-/raw/master/graphics/wazuh_modules.png)
 

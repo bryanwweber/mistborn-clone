@@ -7,6 +7,7 @@ PartOf=Mistborn-base.service
 [Service]
 Restart=always
 RestartSec=15
+TimeoutStartSec=600
 User=root
 Group=docker
 PermissionsStartOnly=true
@@ -17,8 +18,12 @@ ExecStart=/opt/mistborn/scripts/wrappers/mistborn_docker.sh wazuh docker-compose
 # Agent install
 ExecStartPost=/opt/mistborn/scripts/wrappers/mistborn_docker.sh wazuh /opt/mistborn/scripts/services/wazuh/agent.sh
 ExecStartPost=-/opt/mistborn/scripts/wrappers/mistborn_docker.sh wazuh /opt/mistborn/scripts/services/wazuh/agent_start.sh
+# Suricata
+ExecStartPost=-/opt/mistborn/scripts/wrappers/mistborn_docker.sh wazuh /opt/mistborn/scripts/services/wazuh/suricata/suricata_init.sh
+ExecStartPost=-/opt/mistborn/scripts/wrappers/mistborn_docker.sh wazuh /opt/mistborn/scripts/services/wazuh/suricata/suricata_start.sh
 # Stop container when unit is stopped
 ExecStop=/opt/mistborn/scripts/wrappers/mistborn_docker.sh wazuh docker-compose -f /opt/mistborn/extra/wazuh.yml down
+ExecStopPost=-/opt/mistborn/scripts/wrappers/mistborn_docker.sh wazuh /opt/mistborn/scripts/services/wazuh/suricata/suricata_stop.sh
 ExecStopPost=-/opt/mistborn/scripts/wrappers/mistborn_docker.sh wazuh /opt/mistborn/scripts/services/wazuh/agent_stop.sh
 
 [Install]
