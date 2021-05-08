@@ -67,3 +67,8 @@ echo "Installing Docker Compose"
 sudo pip3 install cryptography==3.3.2 docker-compose
 #fi
 
+
+# check raspbian fixes
+if [ "$DISTRO" == "raspbian" ] || [ "$DISTRO" == "raspios" ]; then
+    source ./scripts/subinstallers/docker_raspbian.sh 
+fi
