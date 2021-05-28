@@ -15,6 +15,8 @@ The term [Mistborn](http://www.brandonsanderson.com/the-mistborn-saga-the-origin
 
 Mistborn started as a passion project for a husband and father protecting his family. Certain family members insisted on connecting their devices to free public WiFi networks. We needed a way to secure all family devices with a solid VPN (Wireguard). Once we had that we wanted to control DNS to block ads to all devices and block malicious websites across all family devices. Then we wanted chat, file-sharing, and webchat services that we could use for ourselves without entrusting our data to some big tech company. And then... home automation. I know I'll be adding more services so I made that easy to do.
 
+As an [Offensive Security Certified Professional (OSCP)](https://resources.infosecinstitute.com/certification/the-oscp-certification-and-exam/), I designed Mistborn thinking about how it would be attacked by both external and internal threats. In making design trade-off decisions I tend to the paranoid. See [Technical and Security Insights](#technical-and-security-insights).
+
 Ideal for teams who:
 - hate internet ads
 - need to be protected from malicious internet domains
@@ -102,7 +104,7 @@ sudo mistborn-cli getconf
 
 Connect via Wireguard then visit `http://home.mistborn`
 
-For more information, see the `Installation` section below.
+For more information, see the [Installation](#installation) section below.
 
 # Network Diagram
 ![Mistborn Network Diagram](https://gitlab.com/cyber5k/public/-/raw/master/graphics/mistborn_network.png)
@@ -557,7 +559,8 @@ Many features and refinements are in the works at various stages including:
 # Featured In
 
 - [Linux Magazine](https://www.linux-magazine.com/Issues/2020/240/Mistborn/(language)/eng-US) November 2020 (featuring Mistborn version from early May 2020)
-- [Awesome Open Source](https://www.youtube.com/watch?v=hekP0_crotw) July 2020 (featuring Mistborn version from early July 2020)
+- [Awesome Open Source](https://www.youtube.com/watch?v=hekP0_crotw) July 2020
+- [DB Tech](https://www.youtube.com/watch?v=UE_OuAOgoZI) May 2021
 
 # Follow
 You can find recent bugfixes, functional additions, some extra documentation and more at the Cyber5K Patreon page: [https://www.patreon.com/cyber5k](https://www.patreon.com/cyber5k)
