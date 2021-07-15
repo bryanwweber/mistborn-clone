@@ -42,3 +42,5 @@ if [ $? -eq 0 ]; then
     sudo dpkg -i libseccomp2_2.5.1-1_$(dpkg --print-architecture).deb
     popd
 fi
+
+set -e
