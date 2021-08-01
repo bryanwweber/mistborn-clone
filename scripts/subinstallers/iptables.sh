@@ -11,6 +11,9 @@ if [ "$DISTRO" == "ubuntu" ]; then
     sudo systemctl disable ufw || true
 fi
 
+# make sure user land binaries installed
+sudo apt-get install -y iptables
+
 # default interface
 iface=$(ip -o -4 route show to default | egrep -o 'dev [^ ]*' | awk 'NR==1{print $2}')
 

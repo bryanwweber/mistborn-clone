@@ -1,16 +1,16 @@
 #!/bin/bash
 
-figlet "Mistborn: Installing Wireguard"
+figlet "Mistborn: Installing WireGuard"
 
 # if wireguard not in current repositories
 if ! $(sudo apt-cache show wireguard > /dev/null 2>&1) ; then
     # install PPAs
 
-    echo "Adding Wireguard PPAs"
+    echo "Adding WireGuard PPAs"
 
     # Wireguard
     if [ "$DISTRO" == "raspbian" ] || [ "$DISTRO" == "raspios" ]; then
-        echo "Adding Wireguard repo keys"
+        echo "Adding WireGuard repo keys"
         sudo -E apt-get install -y dirmngr
         sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 8B48AD6246925553
         sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 7638D0442B90D010
@@ -28,6 +28,6 @@ if ! $(sudo apt-cache show wireguard > /dev/null 2>&1) ; then
     fi
 fi
 
-echo "Installing Wireguard"
+echo "Installing WireGuard"
 sudo apt-get update
 sudo -E apt-get install -y openresolv wireguard
