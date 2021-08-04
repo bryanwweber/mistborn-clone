@@ -62,7 +62,6 @@ Within Mistborn is a panel to enable and manage these free extra services (off b
 # Quickstart
 Tested Operating Systems (in order of thoroughness):
 - Ubuntu 20.04 LTS
-- Ubuntu 18.04 LTS
 - Debian 10 (Buster)
 - Raspberry Pi OS (formerly Raspbian) Buster
 
@@ -606,6 +605,7 @@ Contact me at [steven@cyber5k.com](mailto:steven@cyber5k.com)
 # Support Mistborn
 
 Please consider supporting the project via:
+- [Patreon](https://www.patreon.com/cyber5k)
 - [Paypal.me](https://paypal.me/cyber5k)
 - [Buy me a drink](https://www.buymeacoffee.com/cyber5k)
-- [Patreon](https://www.patreon.com/cyber5k)
+- Bitcoin: `3Lqxc1vpndN3TGi9cipNHg1RgXxGxVDdZo`
