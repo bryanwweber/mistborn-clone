@@ -3,7 +3,7 @@ version: '3.7'
 
 services:
   wazuh:
-    image: wazuh/wazuh-odfe:4.1.2
+    image: wazuh/wazuh-odfe:4.1.5
     hostname: wazuh-manager
     restart: unless-stopped
     ports:
@@ -29,7 +29,7 @@ services:
       - filebeat_var:/var/lib/filebeat
 
   wazuh-kibana:
-    image: wazuh/wazuh-kibana-odfe:4.1.2
+    image: wazuh/wazuh-kibana-odfe:4.1.5
     hostname: wazuh-kibana
     restart: unless-stopped
     labels:
