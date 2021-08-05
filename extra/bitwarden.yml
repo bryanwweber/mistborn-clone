@@ -2,7 +2,7 @@ version: '3'
 
 services:  
   bitwarden:
-    image: bitwardenrs/server:latest
+    image: vaultwarden/server:latest
     container_name: mistborn_production_bitwarden
     env_file:
       - ../.envs/.production/.bitwarden
