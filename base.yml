@@ -119,7 +119,7 @@ services:
     restart: unless-stopped
   
   redis:
-    image: redis:6.2-alpine
+    image: redis:5.0
     container_name: mistborn_production_redis
     restart: unless-stopped
 
