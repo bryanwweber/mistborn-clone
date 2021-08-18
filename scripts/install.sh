@@ -105,13 +105,39 @@ source ./scripts/subinstallers/platform.sh
 
 # iptables
 echo "Setting up firewall (iptables)"
-if [ ! -f "/etc/iptables/rules.v4" ]; then
-    echo "Setting iptables rules..."
-    ./scripts/subinstallers/iptables.sh
-else
-    echo "iptables rules exist. Leaving alone."
+if [ -f "/etc/iptables/rules.v4" ]; then
+    echo "Caution: iptables rules exist."
+
+    read -p "Would you like to Clear (C) existing iptables rules or Add (A) to existing rules (this may cause problems)? [c/a] " MISTBORN_IPTABLES_ACTION
+    echo
+
+    if [[ "${MISTBORN_IPTABLES_ACTION}" =~ ^([cC])$ ]]; then
+    # clear
+        echo "Clearing existing iptables rules..."
+        sudo rm -rf /etc/iptables/rules.v4
+        sudo iptables -F
+        sudo iptables -t nat -F
+        sudo iptables -P INPUT ACCEPT
+        sudo iptables -P FORWARD ACCEPT
+        sudo rm -rf /etc/iptables/rules.v6 || true
+        sudo ip6tables -F || true
+        sudo ip6tables -t nat -F || true
+        sudo ip6tables -P INPUT ACCEPT || true
+        sudo ip6tables -P FORWARD ACCEPT || true
+
+    elif [[ "${MISTBORN_IPTABLES_ACTION}" =~ ^([aA])$ ]]; then
+    # do nothing
+        echo "Proceeding..."
+
+    else
+        echo "Unrecognized action: stopping"
+        exit 1;
+
+    fi
 fi
 
+echo "Setting iptables rules..."
+source ./scripts/subinstallers/iptables.sh
 
 # SSH Server
 sudo -E apt-get install -y openssh-server
