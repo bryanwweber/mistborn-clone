@@ -15,7 +15,7 @@ The term [Mistborn](http://www.brandonsanderson.com/the-mistborn-saga-the-origin
 
 Mistborn started as a passion project for a husband and father protecting his family. Certain family members insisted on connecting their devices to free public WiFi networks. We needed a way to secure all family devices with a solid VPN (WireGuard). Once we had that we wanted to control DNS to block ads to all devices and block malicious websites across all family devices. Then we wanted chat, file-sharing, and webchat services that we could use for ourselves without entrusting our data to some big tech company. And then... home automation. I know I'll be adding more services so I made that easy to do.
 
-As an [Offensive Security Certified Professional (OSCP)](https://resources.infosecinstitute.com/certification/the-oscp-certification-and-exam/), I designed Mistborn thinking about how it would be attacked by both external and internal threats. In making design trade-off decisions I tend to the paranoid. See [Technical and Security Insights](#technical-and-security-insights).
+As a [Certified Information Systems Security Professional (CISSP)](https://www.credly.com/badges/ebcb76f2-1e82-4079-9ea3-b507ffbd1d15/public_url) and an [Offensive Security Certified Professional (OSCP)](https://www.credly.com/badges/b93c44ec-3af5-48e8-9a33-b64365b70c61/public_url), I designed Mistborn thinking about how it would be attacked by both external and internal threats. In making design trade-off decisions I tend to the paranoid. See [Technical and Security Insights](#technical-and-security-insights).
 
 Ideal for teams who:
 - hate internet ads
@@ -62,8 +62,9 @@ Within Mistborn is a panel to enable and manage these free extra services (off b
 # Quickstart
 Tested Operating Systems (in order of thoroughness):
 - Ubuntu 20.04 LTS
-- Debian 10 (Buster)
+- Debian 11 (Bullseye)
 - Raspberry Pi OS (formerly Raspbian) Buster
+- Formerly tested and may still work: Ubuntu 18.04 LTS, Debian 10 (Buster)
 
 **Note:** Install operating system updates and restart. Raspberry Pi OS particularly needs to be restarted after kernel updates (kernel modules for the currently running kernel may be missing).
 
