@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# check that figlet exists
+if ! [ -x "$(command -v figlet)" ]; then
+    echo "Installing figlet"
+    sudo apt-get install -y figlet
+fi
+
 # Get OS info
 # Determine OS platform
 UNAME=$(uname | tr "[:upper:]" "[:lower:]")

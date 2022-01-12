@@ -73,6 +73,10 @@ git submodule update --init --recursive
 echo "Checking updates"
 source ./scripts/subinstallers/check_updates.sh
 
+# Check ready for installation
+echo "Checking system readiness for mistborn installation"
+source ./scripts/subinstallers/check_install_ready.sh
+
 # MISTBORN_DEFAULT_PASSWORD
 source ./scripts/subinstallers/passwd.sh
 
