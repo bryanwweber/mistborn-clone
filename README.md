@@ -90,9 +90,17 @@ Recommended System Specifications:
 | High-resource services | Default + Jitsi, Nextcloud, Jellyfin, Rocket.Chat, Home Assistant, OnlyOffice | 6 GB+ | 25 GB+    |
 | SIEM                   | Default + Wazuh + Extras                                                      | 16 GB+ | 100 GB+   |
 
-Starting from base installation
+One line direct installation
+```
+wget -O install.sh https://gitlab.com/cyber5k/mistborn/-/raw/master/scripts/install.sh && sudo -E bash ./install.sh
+```
+
+**OR**
+
+Clone repository and examine files first
 ```
 git clone https://gitlab.com/cyber5k/mistborn.git
+# Examine files if desired
 sudo -E bash ./mistborn/scripts/install.sh
 ```
 
