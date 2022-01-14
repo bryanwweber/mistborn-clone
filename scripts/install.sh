@@ -4,6 +4,12 @@ set -e
 
 export DEBIAN_FRONTEND=noninteractive
 
+# check that git exists
+if ! [ -x "$(command -v git)" ]; then
+    echo "Installing git"
+    sudo apt-get install -y git
+fi
+
 ## ensure run as nonroot user
 #if [ "$EUID" -eq 0 ]; then
 MISTBORN_USER="mistborn"
@@ -34,11 +40,12 @@ if [ $(whoami) != "$MISTBORN_USER" ]; then
         # get git branch if one exists (default to master)
         pushd .
         cd $SCRIPTPATH
-        GIT_BRANCH=$(git symbolic-ref --short HEAD || echo "master")
+        GIT_BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null || echo "master")
         popd
 
         sudo cp $FULLPATH /home/$MISTBORN_USER
         sudo chown $MISTBORN_USER:$MISTBORN_USER /home/$MISTBORN_USER/$FILENAME
+        sudo chmod 700 /home/$MISTBORN_USER/$FILENAME
         sudo SSH_CLIENT="$SSH_CLIENT" MISTBORN_DEFAULT_PASSWORD="$MISTBORN_DEFAULT_PASSWORD" GIT_BRANCH="$GIT_BRANCH" MISTBORN_INSTALL_COCKPIT="$MISTBORN_INSTALL_COCKPIT" -i -u $MISTBORN_USER bash -c "/home/$MISTBORN_USER/$FILENAME" # self-referential call
         exit 0
 fi
