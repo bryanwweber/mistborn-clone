@@ -53,18 +53,15 @@ fi
 echo "Running as $USER"
 
 # banner
-echo -e "  ____      _                 ____  _  __"
-echo -e " / ___|   _| |__   ___ _ __  | ___|| |/ /"
-echo -e "| |  | | | | '_ \ / _ \ '__| |___ \| ' /"
-echo -e "| |__| |_| | |_) |  __/ |     ___) | . \ "
-echo -e " \____\__, |_.__/ \___|_|    |____/|_|\_\ "
-echo -e "      |___/"
-echo -e " __  __ _     _   _"
-echo -e "|  \/  (_)___| |_| |__   ___  _ __ _ __"
-echo -e "| |\/| | / __| __| '_ \ / _ \| '__| '_ \ "
-echo -e "| |  | | \__ \ |_| |_) | (_) | |  | | | |"
-echo -e "|_|  |_|_|___/\__|_.__/ \___/|_|  |_| |_|"
-echo -e ""
+
+# check that figlet exists
+if ! [ -x "$(command -v figlet)" ]; then
+    echo "Installing figlet"
+    sudo apt-get install -y figlet
+fi
+
+figlet "Stormblest"
+figlet "Mistborn"
 
 sudo rm -rf /opt/mistborn 2>/dev/null || true
 
