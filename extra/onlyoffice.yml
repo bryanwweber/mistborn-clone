@@ -3,7 +3,7 @@ version: '3'
 services:
   onlyoffice:
     container_name: mistborn_production_onlyoffice
-    image: onlyoffice/documentserver:latest
+    image: onlyoffice/documentserver:6.4.2.6
     volumes:
       - ../../mistborn_volumes/extra/onlyoffice/logs:/var/log/onlyoffice
       - ../../mistborn_volumes/extra/onlyoffice/cache:/var/lib/onlyoffice
