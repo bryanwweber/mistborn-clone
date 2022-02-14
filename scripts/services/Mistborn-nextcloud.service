@@ -15,6 +15,7 @@ ExecStartPre=/opt/mistborn/scripts/wrappers/mistborn_docker.sh nextcloud docker-
 
 # Start container when unit is started
 ExecStart=/opt/mistborn/scripts/wrappers/mistborn_docker.sh nextcloud docker-compose -f /opt/mistborn/extra/nextcloud.yml up --build
+ExecStartPost=-/bin/bash /opt/mistborn/scripts/services/nextcloud/startpost.sh
 # Stop container when unit is stopped
 ExecStop=/opt/mistborn/scripts/wrappers/mistborn_docker.sh nextcloud docker-compose -f /opt/mistborn/extra/nextcloud.yml down
 # Post stop

@@ -3,6 +3,7 @@
 #### ENV file
 
 VAR_FILE=/opt/mistborn/.env
+DJANGO_PROD_FILE=/opt/mistborn/.envs/.production/.django
 
 # load env variables
 
@@ -12,6 +13,16 @@ source /opt/mistborn/scripts/subinstallers/platform.sh
 echo "" | sudo tee ${VAR_FILE}
 sudo chown mistborn:mistborn ${VAR_FILE}
 sudo chmod 600 ${VAR_FILE}
+
+# MISTBORN_BASE_DOMAIN
+if [[ -f "$DJANGO_PROD_FILE" ]] && grep -q -wi "MISTBORN_BASE_DOMAIN" "${DJANGO_PROD_FILE}" ; then
+
+    MISTBORN_BASE_DOMAIN=$(grep -e "MISTBORN_BASE_DOMAIN=.*" ${DJANGO_PROD_FILE} | awk -F"=" '{print $2}')
+    echo "MISTBORN_BASE_DOMAIN=${MISTBORN_BASE_DOMAIN}" | sudo tee -a ${VAR_FILE}
+
+else
+    echo "MISTBORN_BASE_DOMAIN=mistborn" | sudo tee -a ${VAR_FILE}
+fi
 
 # MISTBORN_DNS_BIND_IP
 
