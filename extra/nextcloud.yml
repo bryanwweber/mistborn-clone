@@ -2,7 +2,7 @@ version: '3'
 
 services:  
   nextcloud:
-    image: nextcloud
+    image: nextcloud:22.2.4-apache
     container_name: mistborn_production_nextcloud
     env_file:
       - ../.envs/.production/.postgres
