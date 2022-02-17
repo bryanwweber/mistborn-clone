@@ -7,17 +7,18 @@ PartOf=Mistborn-base.service
 [Service]
 Restart=always
 RestartSec=15
+TimeoutStartSec=300
 User=root
 Group=docker
 PermissionsStartOnly=true
 # Shutdown container (if running) when unit is stopped
-ExecStartPre=/opt/mistborn/scripts/wrappers/mistborn_docker.sh nextcloud docker-compose -f /opt/mistborn/extra/nextcloud.yml down
+ExecStartPre=/opt/mistborn/scripts/wrappers/mistborn_docker.sh nextcloud,nextcloud-db docker-compose -f /opt/mistborn/extra/nextcloud.yml down
 
 # Start container when unit is started
-ExecStart=/opt/mistborn/scripts/wrappers/mistborn_docker.sh nextcloud docker-compose -f /opt/mistborn/extra/nextcloud.yml up --build
+ExecStart=/opt/mistborn/scripts/wrappers/mistborn_docker.sh nextcloud,nextcloud-db docker-compose -f /opt/mistborn/extra/nextcloud.yml up --build
 ExecStartPost=-/bin/bash /opt/mistborn/scripts/services/nextcloud/startpost.sh
 # Stop container when unit is stopped
-ExecStop=/opt/mistborn/scripts/wrappers/mistborn_docker.sh nextcloud docker-compose -f /opt/mistborn/extra/nextcloud.yml down
+ExecStop=/opt/mistborn/scripts/wrappers/mistborn_docker.sh nextcloud,nextcloud-db docker-compose -f /opt/mistborn/extra/nextcloud.yml down
 # Post stop
 
 [Install]

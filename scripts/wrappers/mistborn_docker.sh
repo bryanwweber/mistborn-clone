@@ -4,6 +4,12 @@ set -e
 
 MISTBORN_HOME="/opt/mistborn"
 
+# check that pwgen exists
+if ! [ -x "$(command -v pwgen)" ]; then
+    echo "Installing pwgen"
+    sudo apt-get install -y pwgen
+fi
+
 SERVICES="$1"
 shift
 
