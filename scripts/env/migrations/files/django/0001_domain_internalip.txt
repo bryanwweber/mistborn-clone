@@ -1,0 +1,12 @@
+###
+add
+/opt/mistborn/.envs/.production/.django
+MISTBORN_BASE_DOMAIN
+MISTBORN_BOTTOM_OF_FILE
+MISTBORN_BASE_DOMAIN=mistborn
+###
+add
+/opt/mistborn/.envs/.production/.django
+MISTBORN_INTERNAL_IP
+MISTBORN_BOTTOM_OF_FILE
+MISTBORN_INTERNAL_IP=10.2.3.1
