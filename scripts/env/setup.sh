@@ -5,8 +5,11 @@
 VAR_FILE=/opt/mistborn/.env
 DJANGO_PROD_FILE=/opt/mistborn/.envs/.production/.django
 
-# load env variables
+# run migrations
+/opt/mistborn/scripts/env/migrations/run_migrations.sh
 
+
+# load env variables
 source /opt/mistborn/scripts/subinstallers/platform.sh
 
 # setup env file
@@ -18,24 +21,31 @@ sudo chmod 600 ${VAR_FILE}
 if [[ -f "$DJANGO_PROD_FILE" ]] && grep -q -wi "MISTBORN_BASE_DOMAIN" "${DJANGO_PROD_FILE}" ; then
 
     MISTBORN_BASE_DOMAIN=$(grep -e "MISTBORN_BASE_DOMAIN=.*" ${DJANGO_PROD_FILE} | awk -F"=" '{print $2}')
-    echo "MISTBORN_BASE_DOMAIN=${MISTBORN_BASE_DOMAIN}" | sudo tee -a ${VAR_FILE}
-
 else
-    echo "MISTBORN_BASE_DOMAIN=mistborn" | sudo tee -a ${VAR_FILE}
+    MISTBORN_BASE_DOMAIN=mistborn
 fi
 
-# MISTBORN_DNS_BIND_IP
-
-MISTBORN_DNS_BIND_IP="10.2.3.1"
-#if [ "$DISTRO" == "ubuntu" ] && [ "$VERSION_ID" == "20.04" ]; then
-#    MISTBORN_DNS_BIND_IP="10.2.3.1"
-#fi
-
-echo "MISTBORN_DNS_BIND_IP=${MISTBORN_DNS_BIND_IP}" | sudo tee -a ${VAR_FILE}
+echo "MISTBORN_BASE_DOMAIN=${MISTBORN_BASE_DOMAIN}" | sudo tee -a ${VAR_FILE}
 
 # MISTBORN_BIND_IP
+# MISTBORN_DNS_BIND_IP
+if [[ -f "$DJANGO_PROD_FILE" ]] && grep -q -wi "MISTBORN_BIND_IP" "${DJANGO_PROD_FILE}" ; then
 
-echo "MISTBORN_BIND_IP=10.2.3.1" | sudo tee -a ${VAR_FILE}
+    MISTBORN_BIND_IP=$(grep -e "MISTBORN_BIND_IP=.*" ${DJANGO_PROD_FILE} | awk -F"=" '{print $2}')
+else
+    MISTBORN_BIND_IP=10.2.3.1
+fi
+
+echo "MISTBORN_BIND_IP=${MISTBORN_BIND_IP}" | sudo tee -a ${VAR_FILE}
+echo "MISTBORN_DNS_BIND_IP=${MISTBORN_BIND_IP}" | sudo tee -a ${VAR_FILE}
+
+# Update DNS settings
+echo "address=/.${MISTBORN_BASE_DOMAIN}/${MISTBORN_BIND_IP}" | sudo tee /opt/mistborn_volumes/base/pihole/etc-dnsmasqd/02-lan.conf
+echo "address=/${MISTBORN_BASE_DOMAIN}/${MISTBORN_BIND_IP}" | sudo tee /opt/mistborn_volumes/base/pihole/etc-dnsmasqd/02-lan.conf
+
+sudo sed -i "s/#name_servers.*/name_servers=${MISTBORN_BIND_IP}/" /etc/resolvconf.conf
+sudo sed -i "s/name_servers.*/name_servers=${MISTBORN_BIND_IP}/" /etc/resolvconf.conf
+
 
 # MISTBORN_TAG
 
