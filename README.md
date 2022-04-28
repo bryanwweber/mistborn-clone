@@ -49,7 +49,7 @@ These tools can be turned on from the Mistborn Security Operations Center:
 Within Mistborn is a panel to enable and manage these free extra services (off by default), locally hosted in Docker containers:
 - [Home Assistant](https://www.home-assistant.io): Open source home automation that puts local control and privacy first
 - [Nextcloud](https://nextcloud.com): Nextcloud offers the industry-leading, on-premises content collaboration platform. It combines the convenience and ease of use of consumer-grade solutions like Dropbox and Google Drive with the security, privacy and control business needs.
-- [BitWarden](https://bitwarden.com): Password manager. The easiest and safest way for individuals, teams, and business organizations to store, share, and sync sensitive data.
+- [Vaultwarden](https://github.com/dani-garcia/vaultwarden): Password manager. An unofficial Bitwarden server implementation written in Rust. It is compatible with the official Bitwarden clients, and is ideal for self-hosted deployments where running the official resource-heavy service is undesirable.
 - [Syncthing](https://syncthing.net): Syncthing is a continuous file synchronization program. It synchronizes files between two or more computers in real time, safely protected from prying eyes.
 - [OnlyOffice](https://www.onlyoffice.com): Cloud office suite. ONLYOFFICE provides you with the most secure way to create, edit and collaborate on business documents online.
 - [Rocket.Chat](https://rocket.chat): Free, Open Source, Enterprise Team Chat.
@@ -86,7 +86,7 @@ Recommended System Specifications:
 |------------------------|-------------------------------------------------------------------------------|-------|-----------|
 | Bare bones             | WireGuard, Pihole (no Cockpit, no extra services)                             | 2 GB  | 15 GB     |
 | Default                | Bare bones + Cockpit                                                          | 2 GB+ | 15 GB     |
-| Low-resource services  | Default + Bitwarden, Tor, Syncthing                                           | 4 GB  | 20 GB     |
+| Low-resource services  | Default + Vaultwarden, Tor, Syncthing                                         | 4 GB  | 20 GB     |
 | High-resource services | Default + Jitsi, Nextcloud, Jellyfin, Rocket.Chat, Home Assistant, OnlyOffice | 6 GB+ | 25 GB+    |
 | SIEM                   | Default + Wazuh + Extras                                                      | 16 GB+ | 100 GB+   |
 
@@ -317,7 +317,7 @@ Mistborn uses the following domains (that can be reached by all WireGuard client
 | Nextcloud | nextcloud.mistborn | Off |
 | Rocket.Chat | chat.mistborn | Off |
 | Home Assistant | homeassistant.mistborn | Off |
-| Bitwarden | bitwarden.mistborn | Off |
+| Vaultwarden | bitwarden.mistborn | Off |
 | Jellyfin | jellyfin.mistborn | Off |
 | Syncthing | syncthing.mistborn | Off |
 | OnlyOffice | onlyoffice.mistborn | Off |
@@ -409,7 +409,7 @@ The core Mistborn services have volumes mounted in `/opt/mistborn_volumes/base`.
 /opt/mistborn_volumes/extra
 ```
 
-Your data from Nextcloud, Syncthing, Bitwarden, etc. will be located there.
+Your data from Nextcloud, Syncthing, Vaultwarden, etc. will be located there.
 
 ## How do I SSH into Mistborn?
 If Mistborn is installed via SSH then an iptables rule is added allowing external SSH connections from the same source IP address only. If Mistborn was installed locally then no external SSH is permitted.
