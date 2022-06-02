@@ -62,6 +62,7 @@ Within Mistborn is a panel to enable and manage these free extra services (off b
 # Quickstart
 Tested Operating Systems (in order of thoroughness):
 - Ubuntu 20.04 LTS
+- Ubuntu 22.04 LTS
 - Debian 11 (Bullseye)
 - Raspberry Pi OS (formerly Raspbian) Buster
 - Formerly tested and may still work: Ubuntu 18.04 LTS, Debian 10 (Buster)

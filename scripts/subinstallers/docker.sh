@@ -4,7 +4,7 @@
 figlet "Mistborn: Installing Docker"
 
 sudo apt update
-sudo -E apt install -y python python3-pip python3-setuptools libffi-dev python3-dev libssl-dev
+sudo -E apt install -y python3-pip python3-setuptools libffi-dev python3-dev libssl-dev
 
 # Ubuntu version >= 20.04
 
