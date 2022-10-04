@@ -49,8 +49,14 @@ sudo iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
 # if installing over SSH, add SSH rule
 if [ ! -z "${SSH_CLIENT}" ]; then
     SSH_SRC=$(echo $SSH_CLIENT | awk '{print $1}')
-    SSH_PRT=$(echo $SSH_CLIENT | awk '{print $3}')
-    sudo iptables -A INPUT -p tcp -s $SSH_SRC --dport $SSH_PRT -j ACCEPT
+
+    if [[ ! $SSH_SRC =~ .*:.* ]]; then
+
+        echo "SSH over IPv4 detected..."
+        SSH_PRT=$(echo $SSH_CLIENT | awk '{print $3}')
+        sudo iptables -A INPUT -p tcp -s $SSH_SRC --dport $SSH_PRT -j ACCEPT
+
+    fi
 fi
 
 # docker rules
@@ -91,6 +97,20 @@ echo "Setting ip6tables rules"
 sudo ip6tables -P INPUT ACCEPT
 sudo ip6tables -I INPUT -i lo -j ACCEPT
 sudo ip6tables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+# if installing over SSH, add SSH rule
+if [ ! -z "${SSH_CLIENT}" ]; then
+    SSH_SRC=$(echo $SSH_CLIENT | awk '{print $1}')
+
+    if [[ $SSH_SRC =~ .*:.* ]]; then
+
+        echo "SSH over IPv6 detected..."
+        SSH_PRT=$(echo $SSH_CLIENT | awk '{print $3}')
+        sudo ip6tables -A INPUT -p tcp -s $SSH_SRC --dport $SSH_PRT -j ACCEPT
+
+    fi
+fi
+
 sudo ip6tables -A INPUT -j MISTBORN_LOG_DROP
 
 sudo ip6tables -P INPUT DROP
