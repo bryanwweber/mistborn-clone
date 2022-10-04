@@ -591,14 +591,6 @@ See the [Mistborn Network Security](https://gitlab.com/cyber5k/mistborn/-/wikis/
 - Unattended upgrades are set to automatically install operating system security updates.
 - Ownership of mistborn files is set to the system mistborn user and access to environment variables is disabled for users other than the owner.
 
-# Roadmap (not necessarily in order)
-Many features and refinements are in the works at various stages including:
-
-- Plugins for Extra Services (enabling third-party development)
-- Plugin repository
-- IPv6 support
-- Anomaly detection in network traffic
-
 # Featured In
 
 - [Linux Magazine](https://www.linux-magazine.com/Issues/2020/240/Mistborn/(language)/eng-US) November 2020 (featuring Mistborn version from early May 2020)
@@ -615,7 +607,6 @@ Contact me at [steven@cyber5k.com](mailto:steven@cyber5k.com)
 # Support Mistborn
 
 Please consider supporting the project via:
-- [Patreon](https://www.patreon.com/cyber5k)
 - [Paypal.me](https://paypal.me/cyber5k)
 - [Buy me a drink](https://www.buymeacoffee.com/cyber5k)
 - Bitcoin: `3Lqxc1vpndN3TGi9cipNHg1RgXxGxVDdZo`
