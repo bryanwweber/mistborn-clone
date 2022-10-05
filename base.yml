@@ -51,7 +51,7 @@ services:
     #  context: .
     #  dockerfile: ./compose/production/traefik/Dockerfile
     #image: mistborn_production_traefik
-    image: traefik:v2.4.9
+    image: traefik:v2.8.8
     container_name: mistborn_production_traefik
     depends_on:
       - django
