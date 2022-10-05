@@ -14,11 +14,18 @@
       url = "http://10.2.3.1:9090"
 
 [http.routers]
-  [http.routers.cockpit]
+  [http.routers.http-cockpit]
     rule = "Host(`cockpit.mistborn`)"
     service = "cockpit"
-    entrypoints = ["web", "websecure"]
-    middlewares = ["mistborn_auth"]
+    entrypoints = ["web"]
+    middlewares = ["mistborn_auth", "mistborn_headers"]
+  [http.routers.https-cockpit]
+    rule = "Host(`cockpit.mistborn`)"
+    service = "cockpit"
+    entrypoints = ["websecure"]
+    middlewares = ["mistborn_auth", "mistborn_headers"]
+    [http.routers.https-cockpit.tls]
+      certresolver = "basic"
 
 [http.middlewares]
   [http.middlewares.mistborn_auth.forwardAuth]
